@@ -9,7 +9,7 @@ const { title, guessStyle, buttonContainer } = StyleSheet.create({
     textAlign: "center",
     marginTop: -100,
     marginBottom: 20,
-    fontFamily: "TitanOne",
+    // fontFamily: "TitanOne",
   },
   guessStyle: {
     fontWeight: "900",
@@ -25,12 +25,16 @@ const { title, guessStyle, buttonContainer } = StyleSheet.create({
 
 export const ScreenGame = (props) => {
   function generateRandomBetween(min, max, exclude) {
-    const rndNum = Math.floor(Math.random() * (max - min)) + min;
+    if (max - min > 2) {
+      const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
-    if (rndNum === exclude) {
-      return generateRandomBetween(min, max, exclude);
+      if (rndNum === exclude) {
+        return generateRandomBetween(min, max, exclude);
+      } else {
+        return rndNum;
+      }
     } else {
-      return rndNum;
+      return props.secretNumber;
     }
   }
   const [min, setMininum] = useState(0);

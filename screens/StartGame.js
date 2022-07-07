@@ -4,6 +4,7 @@ import {
   View,
   Text,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { useState } from "react";
@@ -17,7 +18,7 @@ const { title, input, buttonContainer } = StyleSheet.create({
     marginTop: -20,
     fontWeight: "bold",
     textAlign: "center",
-    fontFamily: "TitanOne",
+    // fontFamily: "TitanOne",
   },
   input: {
     backgroundColor: "#fff",
@@ -57,7 +58,11 @@ export const StartGame = (props) => {
       style={{ flex: 1, justifyContent: "center", padding: 16 }}
       imageStyle={{ opacity: 0.2 }}
     >
-      <Text style={title}>DIGIT A NUMBER</Text>
+      <Text style={title}>
+        {Dimensions.get("window").width < 400
+          ? "DIGIT A NUMBER"
+          : " DIGIT MAGIC NUMBER"}
+      </Text>
       <TextInput
         onChangeText={inputChange}
         keyboardType="numeric"
